@@ -17,12 +17,13 @@ exports.adminBoard = (req, res) => {
         console.error(err);
         res.status(504).send("file read error");
       }
-      console.log(data);
-      res.status(200).send(data);
+	  const { user }= req.query
+
+      res.status(200).send(data[user]);
     }
   );
 
-  //after authorization, we need to give the ST socket relayer thr nod, and respond with an object containing user settings
+  //after authorization, we need to give the ST socket relayer the nod, and respond with an object containing user settings
 };
 
 exports.moderatorBoard = (req, res) => {
@@ -39,5 +40,5 @@ exports.moderatorBoard = (req, res) => {
     }
   );
 
-  //after authorization, we need to give the ST socket relayer thr nod, and Respond with an object containing user settings
+  //after authorization, we need to give the ST socket relayer the nod, and Respond with an object containing user settings
 };
