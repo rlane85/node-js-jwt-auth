@@ -4,7 +4,7 @@ const cors = require("cors");
 const app = express();
 
 var corsOptions = {
-  origin: "http://localhost:8081"
+  origin: "*"
 };
 
 app.use(cors(corsOptions));
@@ -19,18 +19,23 @@ app.use(express.urlencoded({ extended: true }));
 const db = require("./app/models");
 const Role = db.role;
 
+// Results will be an empty array and metadata will contain the number of affected rows.
 db.sequelize.sync();
 // force: true will drop the table if it already exists
-// db.sequelize.sync({force: true}).then(() => {
-//   console.log('Drop and Resync Database with { force: true }');
-//   initial();
-// });
+/*
+//run on first start only to initialize tables
+db.sequelize.sync({force: true}).then(() => {
 
-// simple route
-app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
+	console.log('Drop and Resync Database with { force: true }');
+initial();
 });
-
+*/
+// simple route
+/*
+app.get("/", (req, res) => {
+  res.json({ message: "Welcome" });
+});
+*/
 // routes
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
