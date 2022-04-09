@@ -5,7 +5,8 @@ exports.allAccess = (req, res) => {
 };
 
 exports.userBoard = (req, res) => {
-  res.status(200).send("User Content.");
+  const { user } = req.query;
+  res.status(200).send("User Content for " + user);
 };
 
 exports.adminBoard = (req, res) => {
@@ -18,8 +19,9 @@ exports.adminBoard = (req, res) => {
         res.status(504).send("file read error");
       }
       const { user } = req.query;
+      const parsedData = JSON.parse(data);
 
-      res.status(200).send(data[user]);
+      res.status(200).send(JSON.stringify(parsedData[user]));
     }
   );
 
