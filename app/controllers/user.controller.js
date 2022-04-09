@@ -17,7 +17,7 @@ exports.adminBoard = (req, res) => {
         console.error(err);
         res.status(504).send("file read error");
       }
-	  const { user }= req.query
+      const { user } = req.query;
 
       res.status(200).send(data[user]);
     }
